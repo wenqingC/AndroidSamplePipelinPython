@@ -45,7 +45,7 @@ pipeline{
 
         stage('自动测试程序源码同步') {
             steps {
-                bat 'mkdir -p iAppBVT_Python'
+                sh 'mkdir -p iAppBVT_Python'
                 dir("iAppBVT_Python"){
                     git branch:'master', url:'git@github.com:wenqingC/iAppBVT_Python.git'
                 }
