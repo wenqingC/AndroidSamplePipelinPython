@@ -8,7 +8,7 @@ pipeline{
             steps {
                 sh 'mkdir -p AndroidSampleApp'
                 dir("AndroidSampleApp"){
-                    git branch:'master', url:'git@github.com:princeqjzh/AndroidSampleApp.git'
+                    git branch:'master', url:'git@github.com:wenqingC/AndroidSampleApp.git'
                 }
             }
         }
@@ -49,7 +49,7 @@ pipeline{
             steps {
                 sh 'mkdir -p iAppBVT_Python'
                 dir("iAppBVT_Python"){
-                    git branch:'master', url:'git@github.com:princeqjzh/iAppBVT_Python.git'
+                    git branch:'master', url:'git@github.com:wenqingC/iAppBVT_Python.git'
                 }
             }
         }
