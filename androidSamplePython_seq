@@ -1,12 +1,12 @@
 pipeline{
     agent {
-        label 'slave-node'
+        label 'master'
     }
 
     stages{
         stage('安卓程序源码同步') {
             steps {
-                bat 'mkdir -p AndroidSampleApp'
+                sh 'mkdir -p AndroidSampleApp'
                 dir("AndroidSampleApp"){
                     git branch:'master', url:'git@github.com:wenqingC/AndroidSampleApp.git'
                 }
@@ -15,9 +15,9 @@ pipeline{
 
         stage('安卓编译打包') {
             steps {
-                bat '''
+                sh '''
                     cd AndroidSampleApp
-                    bat gradlew clean assembleDebug
+                    sh gradlew clean assembleDebug
                 '''
             }
         }
@@ -25,7 +25,7 @@ pipeline{
 
         stage('安卓部署') {
             steps {
-                bat '''
+                sh '''
                     cd AndroidSampleApp
                     apk=app/build/outputs/apk/debug/app-debug.apk
                     {
@@ -54,7 +54,7 @@ pipeline{
 
         stage('运行自动化测试') {
             steps {
-                bat '''
+                sh '''
 
                     cd iAppBVT_Python
 
