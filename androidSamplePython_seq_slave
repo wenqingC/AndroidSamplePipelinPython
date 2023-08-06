@@ -30,10 +30,10 @@ pipeline{
                 bat '''
                     cd AndroidSampleApp
                     set pwd = %cd%
-                    #try: 卸载现有的安卓app
+                    %try: 卸载现有的安卓app%
                     adb uninstall com.appsflyer.androidsampleapp || echo "no com.appsflyer.androidsampleapp package"
 
-                    #安装安卓app
+                    %安装安卓app%
                     adb install %pwd%/app/build/outputs/apk/debug/app-debug.apk
                 '''
             }
@@ -56,10 +56,10 @@ pipeline{
 
                     cd iAppBVT_Python
 
-                    #更新python依赖库
+                    %更新python依赖库%
                     pip install -r requirements.txt
 
-                    #运行自动化测试
+                    %运行自动化测试%
                     pytest -sv test/bvt_test.py --tc-file ~/iAppBVT_Python.json --tc-format json
                 '''
             }
