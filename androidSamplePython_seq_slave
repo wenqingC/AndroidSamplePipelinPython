@@ -6,7 +6,9 @@ pipeline{
     stages{
         stage('安卓程序源码同步') {
             steps {
-                bat 'md AndroidSampleApp || echo "the dir AndroidSampleApp already exist"
+                bat '''
+                    md AndroidSampleApp || echo "the dir AndroidSampleApp already exist"
+                '''
                 dir("AndroidSampleApp"){
                     git branch:'master', url:'git@github.com:wenqingC/AndroidSampleApp.git'
                 }
@@ -39,7 +41,9 @@ pipeline{
 
         stage('自动测试程序源码同步') {
             steps {
-                bat 'md iAppBVT_Python || echo "the dir iAppBVT_Python already exist"
+                bat '''
+                    md iAppBVT_Python || echo "the dir iAppBVT_Python already exist"
+                '''
                 dir("iAppBVT_Python"){
                     git branch:'master', url:'git@github.com:wenqingC/iAppBVT_Python.git'
                 }
