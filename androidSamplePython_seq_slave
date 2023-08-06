@@ -42,7 +42,7 @@ pipeline{
         stage('自动测试程序源码同步') {
             steps {
                 bat '''
-                    md iAppBVT_Python || echo "the dir iAppBVT_Python already exist"
+                    md iAppBVT_Python || cd iAppBVT_Python
                 '''
                 dir("iAppBVT_Python"){
                     git branch:'master', url:'git@github.com:wenqingC/iAppBVT_Python.git'
