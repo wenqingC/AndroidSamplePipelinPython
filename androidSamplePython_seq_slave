@@ -7,7 +7,7 @@ pipeline{
         stage('安卓程序源码同步') {
             steps {
                 bat '''
-                    md AndroidSampleApp || echo "the dir AndroidSampleApp already exist"
+                    md AndroidSampleApp || cd AndroidSampleApp
                 '''
                 dir("AndroidSampleApp"){
                     git branch:'master', url:'git@github.com:wenqingC/AndroidSampleApp.git'
