@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('安卓程序源码同步') {
             steps {
-                bat 'mkdir AndroidSampleApp || cd AndroidSampleApp'
+                bat 'md AndroidSampleApp || echo "the dir AndroidSampleApp already exist"
                 dir("AndroidSampleApp"){
                     git branch:'master', url:'git@github.com:wenqingC/AndroidSampleApp.git'
                 }
@@ -17,9 +17,6 @@ pipeline{
             steps {
                 bat '''
                     cd AndroidSampleApp
-                    set pwd = %cd%
-                    set apk=app/build/outputs/apk/debug/app-debug.apk
-                    del %pwd%%apk% || echo "no apk file app-debug.apk"
                     gradlew clean assembleDebug
                 '''
             }
@@ -31,19 +28,18 @@ pipeline{
                 bat '''
                     cd AndroidSampleApp
                     set pwd = %cd%
-                    set apk=app/build/outputs/apk/debug/app-debug.apk
                     #try: 卸载现有的安卓app
                     adb uninstall com.appsflyer.androidsampleapp || echo "no com.appsflyer.androidsampleapp package"
 
                     #安装安卓app
-                    adb install %pwd%%apk%
+                    adb install %pwd%/app/build/outputs/apk/debug/app-debug.apk
                 '''
             }
         }
 
         stage('自动测试程序源码同步') {
             steps {
-                bat 'mkdir iAppBVT_Python || cd iAppBVT_Python'
+                bat 'md iAppBVT_Python || echo "the dir iAppBVT_Python already exist"
                 dir("iAppBVT_Python"){
                     git branch:'master', url:'git@github.com:wenqingC/iAppBVT_Python.git'
                 }
