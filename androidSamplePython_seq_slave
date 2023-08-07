@@ -29,12 +29,11 @@ pipeline{
             steps {
                 bat '''
                     cd AndroidSampleApp
-                    set pwd = %cd%
                     :卸载现有的安卓app
                     adb uninstall com.appsflyer.androidsampleapp || echo "no com.appsflyer.androidsampleapp package"
 
                     :安装安卓app
-                    adb install %pwd%/app/build/outputs/apk/debug/app-debug.apk
+                    adb install %cd%/app/build/outputs/apk/debug/app-debug.apk
                 '''
             }
         }
