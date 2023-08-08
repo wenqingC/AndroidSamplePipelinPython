@@ -75,7 +75,7 @@ pipeline{
                                     pip install -r requirements.txt
 
                                     #运行自动化测试
-                                    pytest -sv test/bvt_test.py --tc-file ~/iAppBVT_Python.json --tc-format json
+                                    pytest -sv test/bvt_test.py --tc-file ./iAppBVT_Python.json --tc-format json
                                 '''
                             }
                         }
