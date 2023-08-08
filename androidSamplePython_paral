@@ -10,7 +10,7 @@ pipeline{
                     steps {
                         sh 'mkdir -p AndroidSampleApp'
                         dir("AndroidSampleApp"){
-                            git branch:'master', url:'git@github.com:princeqjzh/AndroidSampleApp.git'
+                            git branch:'master', url:'git@github.com:wenqingC/AndroidSampleApp.git'
                         }
                     }
                 }
@@ -19,7 +19,7 @@ pipeline{
                     steps {
                         sh 'mkdir -p iAppBVT_Python'
                         dir("iAppBVT_Python"){
-                            git branch:'master', url:'git@github.com:princeqjzh/iAppBVT_Python.git'
+                            git branch:'master', url:'git@github.com:wenqingC/iAppBVT_Python.git'
                         }
                     }
                 }
@@ -29,9 +29,8 @@ pipeline{
         stage('安卓编译打包') {
             steps {
                 sh '''
-                    . ~/.bash_profile
                     cd AndroidSampleApp
-                    sh gradlew clean assembleDebug
+                    gradlew clean assembleDebug
                 '''
             }
         }
@@ -49,7 +48,6 @@ pipeline{
                         stage('部署') {
                             steps {
                                 sh '''
-                                    . ~/.bash_profile
                                     cd AndroidSampleApp
                                     apk=app/build/outputs/apk/debug/app-debug.apk
                                     {
@@ -70,12 +68,11 @@ pipeline{
                         stage('自动测试') {
                             steps {
                                 sh '''
-                                    . ~/.bash_profile
 
                                     cd iAppBVT_Python
 
                                     #更新python依赖库
-                                    pip3.9 install -r requirements.txt
+                                    pip install -r requirements.txt
 
                                     #运行自动化测试
                                     pytest -sv test/bvt_test.py --tc-file ~/iAppBVT_Python.json --tc-format json
