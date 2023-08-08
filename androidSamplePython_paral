@@ -30,7 +30,7 @@ pipeline{
             steps {
                 sh '''
                     cd AndroidSampleApp
-                    gradlew clean assembleDebug
+                    sh gradlew clean assembleDebug
                 '''
             }
         }
